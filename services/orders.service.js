@@ -18,12 +18,13 @@ const events={
                 error:'Validation failed',
                 message:error.details[0].message,
             })
-            const {user:{_id}}=getTokenDetails(req.headers.auth);
+            //const {user:{_id}}=getTokenDetails(req.headers.auth);
             //check if same invoice no exists
             //const order= await db.orders.find({no:value.no,userId:_id}).toArray();
             //if(order.length>0) return res.status(200).send('An order already exists in the same no');
            // else {
-               const data= await db.orders.insertOne({...value,createdAt:dateTime,userId:_id});
+               //const data= await db.orders.insertOne({...value,createdAt:dateTime,userId:_id});
+               const data= await db.orders.insertOne({...value,createdAt:dateTime});
                return res.status(200).send(data);
             //}
         }catch(err){
