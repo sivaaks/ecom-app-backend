@@ -20,7 +20,7 @@ const PORT=3001;
         await db.connect();
 
         app.use(cors({
-            origin:['http://localhost:3000','https://siva-invoice-app.netlify.app']
+            origin:['http://localhost:3000','https://siva-ecom-app.netlify.app']
         }))
         app.use(express.json());
 
