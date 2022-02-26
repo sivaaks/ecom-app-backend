@@ -81,7 +81,7 @@ const services= {
     },
 
     async getProducts(req,res){
-        const {user:{_id,email}}=getTokenDetails(req.headers.auth);
+       // const {user:{_id,email}}=getTokenDetails(req.headers.auth);
         try{
             const data= await db.products.find({},{projection:{_id:1,name:1,price:1,salePrice:1,stock:1,tax:1,hsn:1,description:1,assured:1,deliveryCharge:1,img:1,bulletPoints:1,createdAt:1}}).toArray();
             res.status(200).send(data);
@@ -91,14 +91,15 @@ const services= {
     },
 
     async getProductIdByName(req,res){
-        const {user:{_id}}=getTokenDetails(req.headers.auth);
+        //const {user:{_id}}=getTokenDetails(req.headers.auth);
         try{
             const {error,value}= contactName.validate(req.body);
             if(error) return res.status(400).send({
                 error:'Validation error',
                 message:error.details[0].message,
             })
-            const data= await db.products.findOne({name:value.name,userId:_id},{projection:{_id:1}});
+            //const data= await db.products.findOne({name:value.name,userId:_id},{projection:{_id:1}});
+            const data= await db.products.findOne({name:value.name},{projection:{_id:1}});
             res.status(200).send(data);
         }catch(err){
             console.log(`Error getting product name by id : ${err}`);
